@@ -37,3 +37,4 @@ node_modules
 ### Project Specific
 
 bower_components
+asset/css/*
