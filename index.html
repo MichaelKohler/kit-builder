@@ -19,7 +19,7 @@
 					<span class="fa fa-bars fa-fw"></span>
 				</button>
 
-				<a class="navbar-brand" scroll-to="">Kit Builder</a>
+				<a class="navbar-brand" href="./">Kit Builder</a>
 
 			</div>
 
@@ -49,7 +49,7 @@
 								<!-- Text input-->
 								<div class="form-group" style="padding-right: 5px">
 									<label class="control-label" for="kitName">Kit Name</label>  
-									<input id="kitName" name="kitName" placeholder="Example Teaching Kit" class="form-control input-md" required type="text">
+									<input id="kitName" name="kitName" placeholder="Your title goes here" class="form-control input-md" required type="text">
 									<span class="help-block">What is the name/title of your kit? <em>(e.g. Jumping into HTML with Thimble)</em></span>  
 								</div>
 							</div>
@@ -58,7 +58,7 @@
 								<!-- Text input-->
 								<div class="form-group" style="padding-left: 5px">
 									<label class="control-label" for="kitAuthor">Author(s)</label>
-									<input id="kitAuthor" name="kitAuthor" placeholder="@laura, @fuzzyfox, @michelle" class="form-control input-md" required type="text">
+									<input id="kitAuthor" name="kitAuthor" placeholder="@webmaker, @mozteach" class="form-control input-md" required type="text">
 									<span class="help-block">A comma seperated list of webmaker.org usernames</span>
 								</div>
 							</div>
@@ -67,7 +67,7 @@
 						<!-- Textarea -->
 						<div class="form-group">
 							<label class="control-label" for="kitShortDescription">Short Description</label>
-							<textarea class="form-control" id="kitShortDescription" name="kitShortDescription" rows="4" required></textarea>
+							<textarea class="form-control" id="kitShortDescription" name="kitShortDescription" rows="4" required>Give it a one-line summary here. What will participants make or learn?</textarea>
 						</div>
 
 						<!-- Text input-->
@@ -126,8 +126,18 @@ How can participants assess and reflect on their work once it's complete? Feel f
 			</section>
 		</main>
 
+		<footer class="wm-footer" style="margin-top:20px;">
+			<div class="container">
+				<div class="row">
+					<div class="footer-license col-lg-4">
+						<p>Portions of this content are © by individual mozilla.org.uk contributors. Content available under <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons License</a>.</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
 		<!-- end kit builder -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+		<script src="asset/js/jquery.min.js"></script>
 		<script>
 			$.fn.eqHeights = function(options) {
 
@@ -187,18 +197,7 @@ How can participants assess and reflect on their work once it's complete? Feel f
 				$('main > section').eqHeights({parentSelector:'main'});
 			});
 		</script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
-		<script>
-		$('#previewFrame').load(function(){
-			var frame = this.contentWindow,
-				mdParser = new Showdown.converter();
-
-			frame.document.querySelector('main').innerHTML = mdParser.makeHtml($('#kitContent').val());
-
-			$('#kitContent').keyup(function(){
-				frame.document.querySelector('main').innerHTML = mdParser.makeHtml($(this).val());
-			});
-		});
-		</script>
+		<script src="asset/js/showdown.min.js"></script>
+		<script src="asset/js/kitbuilder.js"></script>
 	</body>
 	</html>
