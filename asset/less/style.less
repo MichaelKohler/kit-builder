@@ -1,0 +1,36 @@
+// get makerstrap
+@import 'makerstrap/less/makerstrap.complete.less';
+
+// Kit Builder Rules
+html, body {
+	background-color: @lightgrey;
+}
+
+body {
+	padding-top: 70px;
+}
+
+main:extend(.container) {
+	#kit-builder {
+		.make-row();
+
+		#markup {
+			.make-lg-column(6);
+		}
+
+		#preview {
+			.make-lg-column(6);
+	
+			overflow: hidden;		
+
+			#previewFrame {
+				width: 200%;
+				height: 200%;
+				margin-right: -100%;
+				margin-bottom: -100%;
+				-moz-transform: scale(0.5);
+				-moz-transform-origin: 0 0;
+			}
+		}
+	}
+}

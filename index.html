@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Kit Builder</title>
+	<link rel="stylesheet" href="asset/css/style.css">
+</head>
+<body>
+
+	<!-- navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+		<div class="container">
+
+			<div class="navbar-header">
+
+				<button type="button" class="navbar-toggle" ng-click="isCollapsed = !isCollapsed">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bars fa-fw"></span>
+				</button>
+
+				<a class="navbar-brand" scroll-to="">Kit Builder</a>
+
+			</div>
+
+			<div style="height: 0px;" class="collapse navbar-collapse" collapse="isCollapsed">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="https://github.com/fuzzyfox/kit-builder"><span class="fa fa-github"></span> fuzzyfox/kit-builder</a></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div>
+	</nav>
+	<!-- end navigation -->
+
+	<!-- kit builder -->
+
+	<main>
+		<header>
+			
+		</header>
+
+		<section id="kit-builder">
+			<section id="markup">
+				<form class="form-horizontal">
+					<fieldset>
+
+						<div class="row">
+							<div class="col-lg-6">
+								<!-- Text input-->
+								<div class="form-group" style="padding-right: 5px">
+									<label class="control-label" for="kitName">Kit Name</label>  
+									<input id="kitName" name="kitName" placeholder="Example Teaching Kit" class="form-control input-md" required type="text">
+									<span class="help-block">What is the name/title of your kit? <em>(e.g. Jumping into HTML with Thimble)</em></span>  
+								</div>
+							</div>
+							
+							<div class="col-lg-6">
+								<!-- Text input-->
+								<div class="form-group" style="padding-left: 5px">
+									<label class="control-label" for="kitAuthor">Author(s)</label>
+									<input id="kitAuthor" name="kitAuthor" placeholder="@laura, @fuzzyfox, @michelle" class="form-control input-md" required type="text">
+									<span class="help-block">A comma seperated list of webmaker.org usernames</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Textarea -->
+						<div class="form-group">
+							<label class="control-label" for="kitShortDescription">Short Description</label>
+							<textarea class="form-control" id="kitShortDescription" name="kitShortDescription" rows="4" required></textarea>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="control-label" for="kitThumbnail">Header Image</label>  
+							<input id="kitThumbnail" name="kitThumbnail" placeholder="https://farm9.staticflickr.com/8104/8550872746_03becbb5dc.jpg" class="form-control input-md" type="text">
+							<span class="help-block">The URL to the image you want to appear in the kit header</span>
+						</div>
+
+						<!-- Textarea -->
+						<div class="form-group">
+							<label class="control-label" for="kitContent">Main Content</label>
+							<textarea class="form-control" id="kitContent" name="kitContent" rows="15" required>
+# Description
+What is your teaching kit all about? What does it help people make or learn? What was your inspiration for creating it?
+
+# Learning objectives
+What specific skills will participants learn? What new knowledge will they come away with? You might want to list these individually, like this:
+
+* Skill 1
+* Skill 2
+* Skill 3
+
+Not sure? Have a look at our new [Web Literacy Standard](https://wiki.mozilla.org/Learning/WebLiteracyStandard).
+
+# What you'll make together
+What will participants make? What's the end result or finished product? A web page? Video? Paper prototype? Dancing robots? :)
+
+# Preparation
+Are any special materials required? What tools will participants need? Should anything be set up in advance? Is there any software to install, or specific technical requirements?
+
+# Assessment and review
+How can participants assess and reflect on their work once it's complete? Feel free to add here if you have suggestions for...
+
+* Discussion questions. Any suggested topics or questions for follow-up discussion?
+* Assessment. Is there a specific standard or rubric you'd suggest using? Are there ways learners can assess each others' work? (Peer assessment?)
+* Sharing. What are some good ways participants can publish and share what they made?
+							</textarea>
+							</div>
+
+							<!-- Text input-->
+							<div class="form-group">
+								<label class="control-label" for="kitTags">Tags</label>  
+								<input id="kitTags" name="kitTags" placeholder="thimble, kit-builder, kit, teach" class="form-control input-md" type="text">
+								<span class="help-block">A comma seperated list of tags for your kit.</span>
+							</div>
+
+						</fieldset>
+					</form>
+
+				</section>
+
+				<section id="preview">
+					<iframe src="preview.html" frameborder="0" id="previewFrame"></iframe>
+				</section>
+			</section>
+		</main>
+
+		<!-- end kit builder -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+		<script>
+			$.fn.eqHeights = function(options) {
+
+				var defaults = {  
+					child: false ,
+					parentSelector:null
+				};  
+				var options = $.extend(defaults, options); 
+
+				var el = $(this);
+				if (el.length > 0 && !el.data('eqHeights')) {
+					$(window).bind('resize.eqHeights', function() {
+						el.eqHeights();
+					});
+					el.data('eqHeights', true);
+				}
+
+				if( options.child && options.child.length > 0 ){
+					var elmtns = $(options.child, this);
+				} else {
+					var elmtns = $(this).children();
+				}
+
+				var prevTop = 0;
+				var max_height = 0;
+				var elements = [];
+				var parentEl;
+				elmtns.height('auto').each(function() {
+
+					if(options.parentSelector && parentEl !== $(this).parents(options.parentSelector).get(0)){
+						$(elements).height(max_height);
+						max_height = 0;
+						prevTop = 0;
+						elements=[];
+						parentEl = $(this).parents(options.parentSelector).get(0);
+					}
+
+					var thisTop = this.offsetTop;
+
+					if (prevTop > 0 && prevTop != thisTop) {
+						$(elements).height(max_height);
+						max_height = $(this).height();
+						elements = [];
+					}
+					max_height = Math.max(max_height, $(this).height());
+
+					prevTop = this.offsetTop;
+					elements.push(this);
+				});
+
+				$(elements).height(max_height);
+			};
+
+			// run on load so it gets the size:
+			// can't have the same pattern for some reason or it scans the page and makes all the same height. Each row should be separate but it doesn't work that way.
+			$(window).load(function() {
+				$('main > section').eqHeights({parentSelector:'main'});
+			});
+		</script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
+		<script>
+		$('#previewFrame').load(function(){
+			var frame = this.contentWindow,
+				mdParser = new Showdown.converter();
+
+			frame.document.querySelector('main').innerHTML = mdParser.makeHtml($('#kitContent').val());
+
+			$('#kitContent').keyup(function(){
+				frame.document.querySelector('main').innerHTML = mdParser.makeHtml($(this).val());
+			});
+		});
+		</script>
+	</body>
+	</html>
