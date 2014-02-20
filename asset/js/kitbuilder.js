@@ -1,3 +1,5 @@
+/* global $, Showdown */
+
 $('#previewFrame').load(function(){
 	var frame    = this.contentWindow,
 		mdParser = new Showdown.converter();
